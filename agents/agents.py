@@ -1,4 +1,6 @@
 from langchain_openai import ChatOpenAI
+from tools.tools import tavily_search
+
 import os
 from dotenv import load_dotenv
 load_dotenv()
@@ -9,11 +11,16 @@ llm = ChatOpenAI(model="gpt-4o-mini")
 
 def research_agent(state):
     topic = state["topic"]
-
+    search_data = tavily_search(topic)
+    
     prompt = f"""
-    Research the topic: {topic}
+    Using this web research, summarize key insights
+    for a blog article.
 
-    Provide important facts, trends, and date and retun only first 3-5 points instead of the full research content
+    Topic: {topic}
+
+    Research:
+    
     """
 
     result = llm.invoke(prompt)
