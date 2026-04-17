@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: 0BSD
 # Author: Lasse Collin
 
-prefix=C:/Users/mohan/AgenticAI/BlogGeneratorAgenticAI/venv/Library
+prefix=C:/Users/mohan/AgenticAI/BlogGeneratorApp/venv/Library
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include

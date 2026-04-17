@@ -19,7 +19,7 @@ def research_agent(state):
 
     Topic: {topic}
 
-    Research:
+    Research:{search_data}
     
     """
 
@@ -52,23 +52,20 @@ def section_agent(state):
     topic = state["topic"]
     outline = state["outline"]
 
-    sections = []
+    prompt = f"""
+    Write a full blog article based on this outline.
 
-    for section in outline:
-        prompt = f"""
-        Write a blog section for:
+    Topic: {topic}
 
-        Blog topic: {topic}
-        Section: {section}
+    Outline:
+    {outline}
 
-        Write 2-3 paragraphs.
-        """
+    Write detailed sections (2-3 paragraphs each).
+    """
 
-        result = llm.invoke(prompt)
+    result = llm.invoke(prompt)
 
-        sections.append(result.content)
-
-    return {"sections": sections}
+    return {"sections": [result.content]}
 
 
 def editor_agent(state):
