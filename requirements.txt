@@ -4,6 +4,6 @@ langchain-openai
 langchain-community
 pypdfium2
 streamlit
-tavily
+tavily-python
 python-dotenv
 dotenv
