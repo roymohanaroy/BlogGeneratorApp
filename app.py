@@ -3,19 +3,30 @@ from time import time
 import time
 from dotenv import load_dotenv
 import os
+import streamlit as st
+from graphs.graph import graph
 
 load_dotenv()
-from graphs.graph import graph
-start = time.time()
 
-topic = "The Future of Artificial Intelligence in Healthcare"
+st.set_page_config(page_title="Blog Generator", layout="wide")
 
-print("Before invoke")
+st.title("🧠 AI Blog Generator")
 
-result = graph.invoke({
-    "topic": topic
-})
-print("TIME:", time.time() - start)
-print("After invoke")
+topic="The future of AI in healthcare"
 
-print(result["blog"])
+if st.button("Generate Blog"):
+
+    with st.spinner("Generating blog..."):
+        result = graph.invoke({"topic": topic})
+
+    st.success("Blog Generated!")
+
+    st.subheader("📝 Blog Output")
+
+    st.markdown(result["blog"])
+
+    st.download_button(
+        "Download Blog",
+        result["blog"],
+        file_name="blog.txt"
+    )
